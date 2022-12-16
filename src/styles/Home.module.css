@@ -37,6 +37,10 @@
   height: 100%;
 }
 
+.headerLogo:hover {
+  cursor: pointer;
+}
+
 .nav {
   display: flex;
   flex-direction: column;
