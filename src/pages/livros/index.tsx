@@ -44,6 +44,7 @@ export default function Livros() {
     }, [books])
 
     useEffect(() => {
+        setCurrentPage(1)
         if (filters.authores === 'all' && filters.readingLevel === 'all') {
             const newBooksArray = getBooks.filter(book => book.title.includes(filters.title))
             return setBooks(newBooksArray)
