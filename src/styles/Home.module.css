@@ -1,0 +1,285 @@
+.section {
+  display: flex;
+  gap: 1rem;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #323233;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  display: grid;
+  grid-template-columns: .25fr 1fr;
+}
+
+.mainDiv {
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+/* SIDEBAR */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  min-height: 100%;
+}
+
+.headerLogo {
+  width: 100px;
+  height: 100%;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+}
+
+.nav a {
+  color: #d6d6d6;
+}
+
+.nav a:hover {
+  color: #fbfbfd;
+}
+
+.sidebarFooter {
+  flex-wrap: wrap;
+  max-width: 150px;
+  text-align: center;
+  color: #d6d6d6;
+}
+
+/* Book Card */
+.bookCard {
+  background-color: #323233;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  border-radius: 10px;
+  height: 350px;
+  max-width: 900px;
+}
+
+.bookBtnWrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.bookBtn {
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.bookBtn:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+
+/* Books Filter */
+.booksFilter {
+  padding: 1rem;
+  background-color: #323233;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 250px;
+}
+
+/* Organization Card */
+.organizationCard {
+  background-color: #323233;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  border-radius: 10px;
+  height: 300px;
+  max-width: 900px;
+}
+
+.organizationSite {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.organizationSite:hover>svg {
+  color: #8b0000;
+}
+
+.organizationBtnWrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.organizationBtn {
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.organizationBtn:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+
+/* Organizations Filter */
+.organizationsFilters {
+  padding: 1rem;
+  background-color: #323233;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 250px;
+}
+
+/* Community Page */
+.communitiesDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Community Card */
+.communityCard {
+  padding: 1rem;
+  background-color: #323233;
+  border-radius: 10px;
+  text-align: center;
+  max-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.communityCard a {
+  padding: 8px 30px;
+  border-radius: 10px;
+  background-color: #8b0000;
+  margin-top: auto;
+  text-align: center;
+}
+
+.communityCard a:hover {
+  opacity: 80%;
+}
+
+/* Reading Guide Card */
+.readingGuideCard {
+  padding: 0 1rem;
+  background-color: #323233;
+  border-radius: 10px;
+  max-height: 400px;
+  max-width: 300px;
+  text-align: center;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.readingGuideCard a {
+  background-color: #8b0000;
+  padding: .5rem 1rem;
+  border-radius: 10px;
+  margin-top: auto;
+  margin-bottom: 1rem;
+
+}
+
+.readingGuideCard a:hover {
+  opacity: 80%;
+}
+
+/* ReadingGuide Page */
+.readingGuideDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Contact Wrapper */
+.contactCard {
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.contactCard svg {
+  font-size: 60px;
+  background-color: #8b0000;
+  border-radius: 50%;
+  padding: 1rem;
+}
+
+.contactCard svg:hover {
+  color: black;
+  cursor: pointer;
+}
+
+/* GuideBookCard */
+.guideBookCard {
+  background-color: #323233;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  max-width: 900px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.pagination button {
+  border: none;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #323233;
+}
+
+.pagination button:hover {
+  opacity: 60%;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: #8b0000;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
