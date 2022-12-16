@@ -129,9 +129,7 @@ export default function Home() {
 
         <main className={styles.main}>
           <div className={styles.mainDiv}>
-
             <p style={{ textAlign: 'center' }}>Procure e organize-se o mais próximo de você</p>
-
             <div className={styles.organizationsFilters}>
               <label>Filtrar por estado</label>
               <select name='state' value={filters.state} onChange={handleOnChange}>

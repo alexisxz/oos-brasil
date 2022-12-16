@@ -20,7 +20,6 @@
 }
 
 .mainDiv {
-  border-radius: 10px;
   padding: 1rem;
 }
 
@@ -154,7 +153,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 250px;
 }
 
 /* Community Page */
@@ -278,8 +276,58 @@
 }
 
 @media (max-width: 600px) {
-  .grid {
-    width: 100%;
+  .section {
     flex-direction: column;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .header {
+    min-height: auto;
+    width: 100%;
+
+  }
+
+  /* Sidebar Page Mobile */
+  .sidebar {
+    display: flex;
+    flex-direction: row;
+    gap: 0rem;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 100%;
+    font-size: 12px;
+  }
+
+  /* Organization Page Mobile */
+  .mainDiv {
+    text-align: center;
+  }
+
+  /* OrganizationCard Mobile */
+  .organizationCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+    height: auto;
+  }
+
+  .organizationCard img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .organizationInfos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
