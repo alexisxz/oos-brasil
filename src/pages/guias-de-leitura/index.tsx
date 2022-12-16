@@ -29,8 +29,8 @@ export default function ReadingGuide() {
     return (
         <div>
             <Head>
-                <title>OOS Brazil - Comunidades</title>
-                <meta name="description" content="Comunidades associadas ao OOS" />
+                <title>OOS Brazil - Guias de leitura</title>
+                <meta name="description" content="Uma leitura organizada para uma melhor formação marxista-leninista" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 

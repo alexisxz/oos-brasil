@@ -117,8 +117,8 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>OOS Brazil - Livros</title>
-        <meta name="description" content="Livros para estudar o socialismo" />
+        <title>OOS Brazil - Organizações</title>
+        <meta name="description" content="Se organize em uma organização socialista perto de você" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
