@@ -283,7 +283,7 @@
   background: #8b0000;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .section {
     flex-direction: column;
   }
