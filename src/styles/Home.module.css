@@ -290,16 +290,15 @@
   .header {
     min-height: auto;
     width: 100%;
-
   }
 
   /* Sidebar Page Mobile */
   .sidebar {
     display: flex;
     flex-direction: row;
-    gap: 0rem;
+    gap: 1rem;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     min-height: 100%;
     font-size: 12px;
   }
