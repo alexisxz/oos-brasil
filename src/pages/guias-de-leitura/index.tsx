@@ -4,6 +4,7 @@ import styles from '../../styles/Home.module.css'
 import React, { useEffect, useState } from 'react'
 import ReadingGuideCard from '../../components/ReadingGuideCard'
 import { data, GuiaDeLeitura } from '../../data/guiasDeLeitura'
+import Link from 'next/link'
 
 
 export default function ReadingGuide() {
@@ -41,7 +42,8 @@ export default function ReadingGuide() {
 
                 <main className={styles.main}>
                     <div className={styles.mainDiv}>
-                        <div className={styles.booksFilter}>
+                        <p style={{ textAlign: 'center' }}>Caso queira adicionar ou sugerir um guia, nos <Link style={{ color: 'blue' }} href='/comunidade'>contate</Link></p>
+                        <div className={styles.readingGuideFilters}>
                             <label>Filtrar por nível de leitura</label>
                             <select name='level' value={filters.level} onChange={handleOnChange}>
                                 <option value="all">Todos</option>

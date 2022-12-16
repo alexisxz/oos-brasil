@@ -100,7 +100,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 250px;
 }
 
 /* Organization Card */
@@ -198,7 +197,16 @@
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
+}
 
+.readingGuideFilters {
+  padding: 1rem;
+  background-color: #323233;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .readingGuideCard a {
@@ -292,6 +300,7 @@
     width: 100%;
   }
 
+
   /* Sidebar Page Mobile */
   .sidebar {
     display: flex;
@@ -328,5 +337,45 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  /* BookCard Mobile */
+  .bookCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+    height: auto;
+  }
+
+  .bookCard img {
+    width: auto;
+    height: 100px;
+    object-fit: contain;
+  }
+
+  .bookInfos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bookBtnWrapper {
+    justify-content: center;
+  }
+
+  /* Reading Guide Page */
+  .readingGuideDiv {
+    grid-template-columns: 1fr;
+  }
+
+  /* ReadingGuideCard */
+  .readingGuideCard {
+    max-width: none;
+  }
+
+  /* Comunidade Page */
+  .communitiesDiv {
+    grid-template-columns: 1fr;
   }
 }

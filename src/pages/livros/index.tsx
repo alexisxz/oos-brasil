@@ -8,6 +8,7 @@ import { Book } from '../../types/Book'
 import { collection, getDocs } from 'firebase/firestore'
 import { database } from '../../firebase'
 import Pagination from '../../components/Pagination'
+import Link from 'next/link'
 
 export default function Livros() {
     const databaseRef = collection(database, 'books')
@@ -108,7 +109,7 @@ export default function Livros() {
 
                 <main className={styles.main}>
                     <div className={styles.mainDiv}>
-
+                        <p style={{ textAlign: 'center' }}>Caso não tenha o livro que deseja, nos <Link style={{ color: 'blue' }} href='/comunidade'>contate</Link></p>
                         <div className={styles.booksFilter}>
                             <label>Buscar por título</label>
                             <input type="text" name='title' onChange={(e) => handleOnChange(e)} />
