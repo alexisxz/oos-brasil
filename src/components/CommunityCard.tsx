@@ -12,7 +12,7 @@ export default function CommunityCard({ community }: Props) {
         <div className={styles.communityCard}>
             <h3>{community.name} <span style={{ fontWeight: 200, fontSize: 14 }}>{community.organization}</span></h3>
             <p>{community.shortDescription}</p>
-            <p>Plataforma: {community.platform}</p>
+            <p>Plataforma(s): {community.platform}</p>
             <a href={community.link} target='_blank' rel='noreferrer'>Acessar</a>
         </div>
     )
