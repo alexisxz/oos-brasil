@@ -49,6 +49,7 @@ export default function Home() {
   }, [organizations])
 
   useEffect(() => {
+    setCurrentPage(1)
     if (!getOrganizations) return
     let newOrganizationsArray: Organization[] = getOrganizations
 
@@ -90,7 +91,7 @@ export default function Home() {
       if (allStates.find(state => state === organization.state)) return;
       return allStates = [...allStates, organization.state]
     })
-
+    allStates.sort()
     setStates(allStates);
   }
 
@@ -102,6 +103,7 @@ export default function Home() {
       return allCities = [...allCities, organization.city]
     })
 
+    allCities.sort()
     setCities(allCities);
   }
 
@@ -113,6 +115,7 @@ export default function Home() {
       return allTypes = [...allTypes, organization.type]
     })
 
+    allTypes.sort()
     setTypes(allTypes)
   }
 

@@ -119,7 +119,7 @@ export default function Livros() {
                             <label>Filtrar por autor(a/es/as)</label>
                             <select name='authores' value={filters.authores} onChange={handleOnChange}>
                                 <option value="all">Todos</option>
-                                {authores.map(author => (
+                                {authores.sort().map(author => (
                                     <option value={author} key={author}>{author}</option>
                                 ))}
                             </select>
