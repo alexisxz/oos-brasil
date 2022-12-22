@@ -104,6 +104,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }
 
 /* Organization Card */
@@ -115,7 +116,12 @@
   gap: 1rem;
   border-radius: 10px;
   height: 300px;
-  max-width: 900px;
+  width: 100%;
+}
+
+.organizationInfos {
+  width: 100%;
+  height: 100%;
 }
 
 .organizationSite {
@@ -156,6 +162,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }
 
 /* Community Page */
@@ -211,6 +218,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }
 
 .readingGuideCard a {
@@ -319,6 +327,9 @@
   /* Organization Page Mobile */
   .mainDiv {
     text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
   }
 
   /* OrganizationCard Mobile */
@@ -328,6 +339,7 @@
     text-align: center;
     justify-items: center;
     height: auto;
+    min-width: 850px;
   }
 
   .organizationCard img {
@@ -350,6 +362,7 @@
     text-align: center;
     justify-items: center;
     height: auto;
+    width: 100%;
   }
 
   .bookCard img {

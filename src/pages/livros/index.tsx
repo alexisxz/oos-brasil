@@ -142,7 +142,7 @@ export default function Livros() {
                         {currentBooks.map(book => (
                             <BookCard key={book.id} book={book} />
                         ))}
-                        <Pagination totalBooks={books.length} booksPerPage={booksPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+                        <Pagination totalItems={books.length} itemsPerPage={booksPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
                     </div>
 
 

@@ -8,6 +8,7 @@ import { collection, getDocs } from 'firebase/firestore'
 import { database } from '../firebase'
 import { Organization } from '../types/Organization'
 import OrganizationCard from '../components/OrganizationCard'
+import Pagination from '../components/Pagination'
 
 export default function Home() {
   const databaseRef = collection(database, 'organizations')
@@ -22,6 +23,13 @@ export default function Home() {
     state: '',
     type: '',
   })
+
+  // pagination
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [organizationsPerPage, setOrganizationsPerPage] = useState<number>(10)
+  const lastOrganizationIndex = currentPage * organizationsPerPage;
+  const firstOrganizationIndex = lastOrganizationIndex - organizationsPerPage;
+  const currentOrganization = organizations.slice(firstOrganizationIndex, lastOrganizationIndex)
 
   // useEffects
   useEffect(() => {
@@ -78,7 +86,7 @@ export default function Home() {
   const getStates = () => {
     let allStates: string[] = []
 
-    getOrganizations.map(organization => {
+    organizations.map(organization => {
       if (allStates.find(state => state === organization.state)) return;
       return allStates = [...allStates, organization.state]
     })
@@ -89,7 +97,7 @@ export default function Home() {
   const getCities = () => {
     let allCities: string[] = []
 
-    getOrganizations.map(organization => {
+    organizations.map(organization => {
       if (allCities.find(city => city === organization.city)) return;
       return allCities = [...allCities, organization.city]
     })
@@ -100,7 +108,7 @@ export default function Home() {
   const getTypes = () => {
     let allTypes: string[] = []
 
-    getOrganizations.map(organization => {
+    organizations.map(organization => {
       if (allTypes.find(type => type === organization.type)) return;
       return allTypes = [...allTypes, organization.type]
     })
@@ -164,9 +172,10 @@ export default function Home() {
 
           </div>
           <div className={styles.mainDiv}>
-            {organizations.map(organization => (
+            {currentOrganization.map(organization => (
               <OrganizationCard key={organization.id} organization={organization} />
             ))}
+            <Pagination totalItems={organizations.length} itemsPerPage={organizationsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
           </div>
         </main>
 

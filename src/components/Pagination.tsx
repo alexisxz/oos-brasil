@@ -2,24 +2,27 @@ import React from 'react'
 import styles from '../styles/Home.module.css'
 
 type Props = {
-    totalBooks: number;
-    booksPerPage: number;
+    totalItems: number;
+    itemsPerPage: number;
     setCurrentPage: (number: number) => void;
     currentPage: number
 }
 
-function Pagination({ totalBooks, booksPerPage, setCurrentPage, currentPage }: Props) {
-    let pages = [];
+function Pagination({ totalItems: totalItems, itemsPerPage: itemsPerPage, setCurrentPage, currentPage }: Props) {
+    let items = [];
 
-    for (let i = 1; i <= Math.ceil(totalBooks / booksPerPage); i++) {
-        pages.push(i)
+    for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
+        items.push(i)
     }
 
     return (
         <div className={styles.pagination}>
-            {pages.map((page, index) => {
+            {currentPage > 1 ? <button onClick={() => setCurrentPage(currentPage - 1)}>Voltar</button> : ''}
+            <button className={styles.active}>{currentPage}</button>
+            {/* {items.map((page, index) => {
                 return <button key={index} onClick={() => setCurrentPage(page)} className={page == currentPage ? `${styles.active}` : ''}>{page}</button>
-            })}
+            })} */}
+            {currentPage < (itemsPerPage - 2) ? <button onClick={() => setCurrentPage(currentPage + 1)}>Avançar</button> : ''}
         </div >
     )
 }

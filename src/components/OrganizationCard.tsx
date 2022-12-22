@@ -17,6 +17,16 @@ type Props = {
 
 export default function OrganizationCard({ organization: organization }: Props) {
 
+    const setContactType = () => {
+
+        if (organization.contact?.includes('@gmail.com' || '@hotmail.com')) {
+            return <a style={{ background: '#8b0000' }} className={styles.organizationBtn} target='_blank' rel='noreferrer' href={`mailto:${organization.contact}`}><MdConnectWithoutContact /></a>
+        } else {
+            return <a style={{ background: '#8b0000' }} className={styles.organizationBtn} target='_blank' rel='noreferrer' href={`${organization.contact}`}><MdConnectWithoutContact /></a>
+        }
+
+    }
+
     return (
         <div className={styles.organizationCard}>
             <img src={organization.image} alt={organization.name} />
@@ -27,7 +37,7 @@ export default function OrganizationCard({ organization: organization }: Props) 
                 <p>{organization.shortDescription}</p>
 
                 <div className={styles.organizationBtnWrapper}>
-                    {organization.contact ? <a style={{ background: '#8b0000' }} className={styles.organizationBtn} target='_blank' rel='noreferrer' href={`mailto:${organization.contact}`}><MdConnectWithoutContact /></a> : ''}
+                    {organization.contact ? setContactType() : ''}
                     {organization.facebook ? <a style={{ background: '#4267B2' }} className={styles.organizationBtn} target='_blank' rel='noreferrer' href={organization.facebook}><MdFacebook /></a> : ''}
                     {organization.instagram ? <a style={{ background: '#C13584' }} className={styles.organizationBtn} target='_blank' rel='noreferrer' href={organization.instagram}><AiFillInstagram /></a> : ''}
                     {organization.whatsapp ? <a style={{ background: '#25D366' }} className={styles.organizationBtn} target='_blank' rel='noreferrer' href={organization.whatsapp}><RiWhatsappFill /></a> : ''}
