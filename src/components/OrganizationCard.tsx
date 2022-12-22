@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 import Image from 'next/image'
 
 // icons
-import { MdEmail, MdFacebook } from 'react-icons/md'
+import { MdConnectWithoutContact, MdFacebook } from 'react-icons/md'
 import { AiFillInstagram, AiOutlineGlobal } from 'react-icons/ai'
 import { RiWhatsappFill } from 'react-icons/ri'
 
@@ -27,7 +27,7 @@ export default function OrganizationCard({ organization: organization }: Props) 
                 <p>{organization.shortDescription}</p>
 
                 <div className={styles.organizationBtnWrapper}>
-                    {organization.contact ? <a style={{ background: '#8b0000' }} className={styles.organizationBtn} target='_blank' rel='noreferrer' href={`mailto:${organization.contact}`}><MdEmail /></a> : ''}
+                    {organization.contact ? <a style={{ background: '#8b0000' }} className={styles.organizationBtn} target='_blank' rel='noreferrer' href={`mailto:${organization.contact}`}><MdConnectWithoutContact /></a> : ''}
                     {organization.facebook ? <a style={{ background: '#4267B2' }} className={styles.organizationBtn} target='_blank' rel='noreferrer' href={organization.facebook}><MdFacebook /></a> : ''}
                     {organization.instagram ? <a style={{ background: '#C13584' }} className={styles.organizationBtn} target='_blank' rel='noreferrer' href={organization.instagram}><AiFillInstagram /></a> : ''}
                     {organization.whatsapp ? <a style={{ background: '#25D366' }} className={styles.organizationBtn} target='_blank' rel='noreferrer' href={organization.whatsapp}><RiWhatsappFill /></a> : ''}
