@@ -14,8 +14,8 @@ export default function GuiaPage() {
     return (
         <div>
             <Head>
-                <title>OOS Brazil - </title>
-                <meta name="description" content="Comunidades associadas ao OOS" />
+                <title>OOS Brazil - {guide?.title}</title>
+                <meta name="description" content={`Guia de leitura - ${guide?.title}`} />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
