@@ -11,7 +11,7 @@ export default function SuggestOrganizationPopUp({ }: Props) {
 
     const [isDisplay, setIsDisplay] = useState(false);
     const [form, setForm] = useState({
-        title: '',
+        name: '',
         state: '',
         city: '',
         link: ''
@@ -25,7 +25,7 @@ export default function SuggestOrganizationPopUp({ }: Props) {
             alert('Obrigado pela sugestão')
         })
 
-        setForm({ title: '', state: '', city: '', link: '' })
+        setForm({ name: '', state: '', city: '', link: '' })
         setIsDisplay(false);
     }
 
@@ -34,11 +34,11 @@ export default function SuggestOrganizationPopUp({ }: Props) {
             <p className={styles.sugerirPopUp} style={{ textAlign: 'center' }}><a onClick={() => setIsDisplay(true)}>Sugerir Organização</a></p>
             <div className={styles.popUp} style={!isDisplay ? { display: 'none' } : {}}>
                 <div className={styles.popUpWrapper} >
-                    <button onClick={() => { setIsDisplay(false); setForm({ title: '', city: '', state: '', link: '' }) }} className={styles.popUpCloseButton}><AiFillCloseCircle /></button>
+                    <button onClick={() => { setIsDisplay(false); setForm({ name: '', city: '', state: '', link: '' }) }} className={styles.popUpCloseButton}><AiFillCloseCircle /></button>
                     <h3>Sugerir uma organização</h3>
                     <div className={styles.popUpInput}>
                         <label>Nome</label>
-                        <input type="text" placeholder='Coloque o nome da organização' onChange={e => setForm({ ...form, title: e.target.value })} value={form.name} />
+                        <input type="text" placeholder='Coloque o nome da organização' onChange={e => setForm({ ...form, name: e.target.value })} value={form.name} />
                     </div>
                     <div className={styles.popUpInput}>
                         <label>Estado</label>
