@@ -19,7 +19,7 @@ function Pagination({ totalItems: totalItems, itemsPerPage: itemsPerPage, setCur
         <div className={styles.pagination}>
             {currentPage > 1 ? <button onClick={() => setCurrentPage(currentPage - 1)}>Voltar</button> : ''}
             <button className={styles.active}>{currentPage}</button>
-            {currentPage <= (totalItems / itemsPerPage) ? <button onClick={() => setCurrentPage(currentPage + 1)}>Avançar</button> : ''}
+            {currentPage < (totalItems / itemsPerPage) ? <button onClick={() => setCurrentPage(currentPage + 1)}>Avançar</button> : ''}
         </div >
     )
 }

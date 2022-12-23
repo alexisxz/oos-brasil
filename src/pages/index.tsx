@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import SideBar from '../components/SideBar'
-import BookCard from '../components/BookCard'
-import { fakeDataLivros } from '../data/fakeData'
 import styles from '../styles/Home.module.css'
 import { useEffect, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'

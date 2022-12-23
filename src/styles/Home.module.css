@@ -98,20 +98,24 @@
   padding: 0.5rem 2rem;
   border-radius: 10px;
   color: white;
+
+  transition: all 400ms ease;
 }
 
 .popUpWrapperButton:hover {
-  opacity: 80%;
+  opacity: 50%;
   cursor: pointer;
 }
 
 .sugerirPopUp {
   color: #3366CC;
   font-weight: 700;
+  transition: all 400ms ease;
 }
 
 .sugerirPopUp:hover {
   cursor: pointer;
+  opacity: 50%;
 }
 
 .popUpCloseButton {
@@ -124,10 +128,13 @@
   position: absolute;
   top: 10px;
   right: 10px;
+
+  transition: all 400ms ease;
 }
 
 .popUpCloseButton:hover {
   cursor: pointer;
+  opacity: 50%;
 }
 
 .popUpInput {
