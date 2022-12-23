@@ -97,6 +97,7 @@
   border: none;
   padding: 0.5rem 2rem;
   border-radius: 10px;
+  color: white;
 }
 
 .popUpWrapperButton:hover {
