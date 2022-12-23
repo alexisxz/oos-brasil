@@ -9,6 +9,7 @@ import { database } from '../firebase'
 import { Organization } from '../types/Organization'
 import OrganizationCard from '../components/OrganizationCard'
 import Pagination from '../components/Pagination'
+import SuggestOrganizationPopUp from '../components/SuggestOrganizationPopUp'
 
 export default function Home() {
   const databaseRef = collection(database, 'organizations')
@@ -139,8 +140,10 @@ export default function Home() {
         </header>
 
         <main className={styles.main}>
+
+
           <div className={styles.mainDiv}>
-            <p style={{ textAlign: 'center' }}>Procure e organize-se o mais próximo de você</p>
+            <p style={{ textAlign: 'center' }}>Procure e organize-se o mais próximo de você </p>
             <div className={styles.organizationsFilters}>
               <label>Filtrar por estado</label>
               <select name='state' value={filters.state} onChange={handleOnChange}>
@@ -170,6 +173,7 @@ export default function Home() {
                 ))}
               </select>
             </div>
+            <SuggestOrganizationPopUp />
 
             {filters.city === '' && filters.state === '' && filters.type === '' ? '' : organizations.length <= 0 ? <div>Infelizmente não temos nenhuma organização que caiba no seu critério, procure na maior cidade mais próxima de você :(</div> : ''}
 

@@ -64,6 +64,78 @@
   color: #d6d6d6;
 }
 
+/* SuggestPopups */
+.popUp {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  height: 100%;
+  width: 100vw;
+  top: 0px;
+  left: 0px;
+}
+
+.popUpWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #d6d6d6;
+  color: #323233;
+  border-radius: 10px;
+  align-items: center;
+  gap: 10px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  min-width: 300px;
+}
+
+.popUpWrapperButton {
+  background-color: #3366CC;
+  border: none;
+  padding: 0.5rem 2rem;
+  border-radius: 10px;
+}
+
+.popUpWrapperButton:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
+.sugerirPopUp {
+  color: #3366CC;
+  font-weight: 700;
+}
+
+.sugerirPopUp:hover {
+  cursor: pointer;
+}
+
+.popUpCloseButton {
+  background: none;
+  border: none;
+  color: #8b0000;
+  font-size: 18px;
+
+  float: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.popUpCloseButton:hover {
+  cursor: pointer;
+}
+
+.popUpInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 /* Book Card */
 .bookCard {
   background-color: #323233;

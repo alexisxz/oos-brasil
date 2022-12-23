@@ -9,6 +9,7 @@ import { collection, getDocs } from 'firebase/firestore'
 import { database } from '../../firebase'
 import Pagination from '../../components/Pagination'
 import Link from 'next/link'
+import SuggestBookPopUp from '../../components/SuggestBookPopUp'
 
 export default function Livros() {
     const databaseRef = collection(database, 'books')
@@ -134,6 +135,7 @@ export default function Livros() {
                                 <option value="advanced">Avançado</option>
                             </select>
                         </div>
+                        <SuggestBookPopUp />
 
                         {filters.authores === 'all' && filters.readingLevel === 'all' ? '' : books.length <= 0 ? <div>Infelizmente não temos nenhum livro que caiba no seu critério :(</div> : ''}
 
