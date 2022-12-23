@@ -88,6 +88,13 @@ export default function Home() {
   const getStates = () => {
     let allStates: string[] = []
 
+    if (filters.city === '') {
+      getOrganizations.map(organization => {
+        if (allStates.find(state => state === organization.state)) return;
+        return allStates = [...allStates, organization.state]
+      })
+    }
+
     organizations.map(organization => {
       if (allStates.find(state => state === organization.state)) return;
       return allStates = [...allStates, organization.state]
@@ -98,6 +105,13 @@ export default function Home() {
 
   const getCities = () => {
     let allCities: string[] = []
+
+    if (filters.state === '') {
+      getOrganizations.map(organization => {
+        if (allCities.find(city => city === organization.city)) return;
+        return allCities = [...allCities, organization.city]
+      })
+    }
 
     organizations.map(organization => {
       if (allCities.find(city => city === organization.city)) return;
