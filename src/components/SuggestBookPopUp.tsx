@@ -31,8 +31,8 @@ export default function SuggestBookPopUp({ }: Props) {
     return (
         <div>
             <p className={styles.sugerirPopUp} style={{ textAlign: 'center' }}><a onClick={() => setIsDisplay(true)}>Sugerir Livro</a></p>
-            <div className={styles.popUp} style={!isDisplay ? { display: 'none' } : {}}>
-                <div className={styles.popUpWrapper} >
+            <div className={styles.popUp} style={!isDisplay ? { display: 'none' } : {}} onClick={() => setIsDisplay(false)}>
+                <div className={styles.popUpWrapper} onClick={e => e.stopPropagation()}>
                     <button onClick={() => { setIsDisplay(false); setForm({ title: '', author: '', link: '' }) }} className={styles.popUpCloseButton}><AiFillCloseCircle /></button>
                     <h3>Sugerir um livro</h3>
                     <div className={styles.popUpInput}>
