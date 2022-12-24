@@ -15,12 +15,14 @@ export default function Home() {
   const [states, setStates] = useState<string[]>([])
   const [cities, setCities] = useState<string[]>([])
   const [types, setTypes] = useState<string[]>([])
+  const [organizationsName, setOrganizationsName] = useState<string[]>([])
   const [getOrganizations, setGetOrganizations] = useState<any[] | Organization[]>([])
   const [organizations, setOrganizations] = useState<Organization[]>([])
   const [filters, setFilter] = useState({
     city: '',
     state: '',
     type: '',
+    organizationName: '',
   })
 
   // pagination
@@ -44,6 +46,7 @@ export default function Home() {
     getStates()
     getCities()
     getTypes()
+    getOrganizationsName()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [organizations])
 
@@ -52,7 +55,7 @@ export default function Home() {
     if (!getOrganizations) return
     let newOrganizationsArray: Organization[] = getOrganizations
 
-    if (filters.city === '' && filters.state === '' && filters.type === '') {
+    if (filters.city === '' && filters.state === '' && filters.type === '' && filters.organizationName === '') {
       return setOrganizations(getOrganizations)
     }
 
@@ -66,6 +69,10 @@ export default function Home() {
 
     if (filters.type !== '') {
       newOrganizationsArray = newOrganizationsArray.filter(organization => organization.type === filters.type)
+    }
+
+    if (filters.organizationName !== '') {
+      newOrganizationsArray = newOrganizationsArray.filter(organization => organization.organization === filters.organizationName)
     }
 
     setOrganizations(newOrganizationsArray)
@@ -86,7 +93,7 @@ export default function Home() {
   const getStates = () => {
     let allStates: string[] = []
 
-    if (filters.city === '') {
+    if (filters.city === '' && filters.type === '' && filters.organizationName === '') {
       getOrganizations.map(organization => {
         if (allStates.find(state => state === organization.state)) return;
         return allStates = [...allStates, organization.state]
@@ -104,7 +111,7 @@ export default function Home() {
   const getCities = () => {
     let allCities: string[] = []
 
-    if (filters.state === '') {
+    if (filters.state === '' && filters.type === '' && filters.organizationName === '') {
       getOrganizations.map(organization => {
         if (allCities.find(city => city === organization.city)) return;
         return allCities = [...allCities, organization.city]
@@ -123,6 +130,13 @@ export default function Home() {
   const getTypes = () => {
     let allTypes: string[] = []
 
+    if (filters.state === '' && filters.city === '' && filters.organizationName === '') {
+      getOrganizations.map(organization => {
+        if (allTypes.find(type => type === organization.type)) return;
+        return allTypes = [...allTypes, organization.type]
+      })
+    }
+
     organizations.map(organization => {
       if (allTypes.find(type => type === organization.type)) return;
       return allTypes = [...allTypes, organization.type]
@@ -130,6 +144,25 @@ export default function Home() {
 
     allTypes.sort()
     setTypes(allTypes)
+  }
+
+  const getOrganizationsName = () => {
+    let allOrganizationsName: string[] = []
+
+    if (filters.state === '' && filters.city === '' && filters.type === '') {
+      getOrganizations.map(organization => {
+        if (allOrganizationsName.find(organizationName => organizationName === organization.organization)) return;
+        return allOrganizationsName = [...allOrganizationsName, organization.organization]
+      })
+    }
+
+    organizations.map(organization => {
+      if (allOrganizationsName.find(organizationName => organizationName === organization.organization)) return;
+      return allOrganizationsName = [...allOrganizationsName, organization.organization]
+    })
+
+    allOrganizationsName.sort()
+    setOrganizationsName(allOrganizationsName)
   }
 
   //handles
@@ -172,6 +205,16 @@ export default function Home() {
                 <option value="">Todos</option>
                 {cities.map(city => (
                   <option value={city} key={city}>{city}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className={styles.organizationsFilters}>
+              <label>Filtrar por organização</label>
+              <select name='organizationName' value={filters.organizationName} onChange={handleOnChange}>
+                <option value="">Todos</option>
+                {organizationsName.map(organizationName => (
+                  <option value={organizationName} key={organizationName}>{organizationName}</option>
                 ))}
               </select>
             </div>

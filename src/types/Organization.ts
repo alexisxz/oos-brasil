@@ -1,6 +1,7 @@
 export type Organization = {
     id?: string,
     name: string,
+    organization: string,
     type: string,
     image: string,
     shortDescription: string,
