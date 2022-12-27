@@ -8,6 +8,8 @@ import { Organization } from '../types/Organization'
 import OrganizationCard from '../components/OrganizationCard'
 import Pagination from '../components/Pagination'
 import SuggestOrganizationPopUp from '../components/SuggestOrganizationPopUp'
+import SelectSearch, { SelectedOptionValue } from 'react-select-search'
+import "react-select-search/style.css";
 
 export default function Home() {
   const databaseRef = collection(database, 'organizations')
@@ -166,10 +168,14 @@ export default function Home() {
   }
 
   //handles
-  const handleOnChange = (event: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>) => {
-    setFilter({ ...filters, [event.currentTarget.name]: event.currentTarget.value })
+  const handleOnChange = (filter: string, selected: SelectedOptionValue | SelectedOptionValue[]) => {
+    setFilter({ ...filters, [filter]: selected ? selected : "" });
   }
 
+  const stateOptions = [{ name: "Todos", value: "" } , ...states.map(s => ({name: s, value: s}))];
+  const citiesOptions = [{ name: "Todos", value: "" } , ...cities.map(s => ({name: s, value: s}))];
+  const organizationOptions = [{ name: "Todos", value: "" } , ...organizationsName.map(s => ({name: s, value: s}))];
+  const typeOptions = [{ name: "Todos", value: "" } , ...types.map(s => ({name: s, value: s}))];
 
   return (
     <div>
@@ -191,42 +197,22 @@ export default function Home() {
             <p style={{ textAlign: 'center' }}>Procure e organize-se o mais próximo de você </p>
             <div className={styles.organizationsFilters}>
               <label>Filtrar por estado</label>
-              <select name='state' value={filters.state} onChange={handleOnChange}>
-                <option value="">Todos</option>
-                {states.map(state => (
-                  <option value={state} key={state}>{state}</option>
-                ))}
-              </select>
+              <SelectSearch options={stateOptions} search={true} placeholder="Estado" onChange={s => handleOnChange("state", s)} value={filters.state} />
             </div>
 
             <div className={styles.organizationsFilters}>
               <label>Filtrar por cidade</label>
-              <select name='city' value={filters.city} onChange={handleOnChange}>
-                <option value="">Todos</option>
-                {cities.map(city => (
-                  <option value={city} key={city}>{city}</option>
-                ))}
-              </select>
+              <SelectSearch options={citiesOptions} search={true} placeholder="Cidade" onChange={s => handleOnChange("city", s)} value={filters.city} />
             </div>
 
             <div className={styles.organizationsFilters}>
               <label>Filtrar por organização</label>
-              <select name='organizationName' value={filters.organizationName} onChange={handleOnChange}>
-                <option value="">Todos</option>
-                {organizationsName.map(organizationName => (
-                  <option value={organizationName} key={organizationName}>{organizationName}</option>
-                ))}
-              </select>
+              <SelectSearch options={organizationOptions} search={true} placeholder="Organização" onChange={s => handleOnChange("organizationName", s)} value={filters.organizationName} />
             </div>
 
             <div className={styles.organizationsFilters}>
               <label>Filtrar por tipo de organização</label>
-              <select name='type' value={filters.type} onChange={handleOnChange}>
-                <option value="">Todos</option>
-                {types.map(type => (
-                  <option value={type} key={type}>{type}</option>
-                ))}
-              </select>
+              <SelectSearch options={typeOptions} search={true} placeholder="Tipe de organização" onChange={s => handleOnChange("type", s)} value={filters.type} />
             </div>
             <SuggestOrganizationPopUp />
 
