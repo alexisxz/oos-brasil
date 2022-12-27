@@ -20,6 +20,10 @@ a {
   box-sizing: border-box;
 }
 
+.select-search-container {
+  width: 100% !important;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

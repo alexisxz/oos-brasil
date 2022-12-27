@@ -29,9 +29,11 @@ export default function OrganizationCard({ organization: organization }: Props) 
 
     return (
         <div className={styles.organizationCard}>
-            <img src={organization.image} alt={organization.name} />
+            <div className={styles.organizationImgBox}>
+                <img src={organization.image} alt={organization.name} className={styles.organizationImg} />
+            </div>
             <div className={styles.organizationInfos}>
-                <h3>{organization.name} <span style={{ fontWeight: 200, fontSize: 14 }}>{organization.type}</span></h3>
+                <h3 className={styles.organizationName}>{organization.name} <span style={{ fontWeight: 200, fontSize: 14 }}>- {organization.type}</span></h3>
                 {organization.site ? <a href={organization.site} target='_blank' rel='noreferrer' className={styles.organizationSite}><AiOutlineGlobal /> {organization.site}</a> : ''}
                 <p><strong>{organization.city}</strong> - {organization.state}</p>
                 <p>{organization.shortDescription}</p>
