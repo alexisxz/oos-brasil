@@ -198,12 +198,6 @@ export default function Home() {
             <div className={styles.organizationsFilters}>
               <label>Filtrar por estado</label>
               <SelectSearch options={stateOptions} search={true} placeholder="Estado" onChange={s => handleOnChange("state", s)} value={filters.state} />
-              {/* <select name='state' value={filters.state} onChange={handleOnChange}>
-                <option value="">Todos</option>
-                {states.map(state => (
-                  <option value={state} key={state}>{state}</option>
-                ))}
-              </select> */}
             </div>
 
             <div className={styles.organizationsFilters}>
