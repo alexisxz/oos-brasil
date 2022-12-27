@@ -38,19 +38,19 @@ export default function SuggestOrganizationPopUp({ }: Props) {
                     <h3>Sugerir uma organização</h3>
                     <div className={styles.popUpInput}>
                         <label>Nome</label>
-                        <input type="text" placeholder='Coloque o nome da organização' onChange={e => setForm({ ...form, name: e.target.value })} value={form.name} />
+                        <input type="text" placeholder='Organização' onChange={e => setForm({ ...form, name: e.target.value })} value={form.name} style={{ textAlign: 'center' }} />
                     </div>
                     <div className={styles.popUpInput}>
                         <label>Estado</label>
-                        <input type="text" placeholder='Coloque o Estado da organização ou "geral" para diversas' onChange={e => setForm({ ...form, state: e.target.value })} value={form.state} />
+                        <input type="text" placeholder='Estado' onChange={e => setForm({ ...form, state: e.target.value })} value={form.state} style={{ textAlign: 'center' }} />
                     </div>
                     <div className={styles.popUpInput}>
                         <label>Cidade</label>
-                        <input type="text" placeholder='Coloque a cidade da organização ou "geral" para diversas' onChange={e => setForm({ ...form, city: e.target.value })} value={form.city} />
+                        <input type="text" placeholder='Cidade' onChange={e => setForm({ ...form, city: e.target.value })} value={form.city} style={{ textAlign: 'center' }} />
                     </div>
                     <div className={styles.popUpInput}>
                         <label>Link para mídia social ou site</label>
-                        <input type="text" placeholder='Coloque um link da organização' onChange={e => setForm({ ...form, link: e.target.value })} value={form.link} />
+                        <input type="text" placeholder='Link' onChange={e => setForm({ ...form, link: e.target.value })} value={form.link} style={{ textAlign: 'center' }} />
                     </div>
 
                     {!form.city || !form.link || !form.name || !form.state ? (

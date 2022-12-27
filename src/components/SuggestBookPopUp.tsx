@@ -37,15 +37,15 @@ export default function SuggestBookPopUp({ }: Props) {
                     <h3>Sugerir um livro</h3>
                     <div className={styles.popUpInput}>
                         <label>Título</label>
-                        <input type="text" placeholder='Coloque o título do livro' onChange={e => setForm({ ...form, title: e.target.value })} value={form.title} />
+                        <input type="text" placeholder='Título do livro' onChange={e => setForm({ ...form, title: e.target.value })} value={form.title} style={{ textAlign: 'center' }} />
                     </div>
                     <div className={styles.popUpInput}>
                         <label>Autor</label>
-                        <input type="text" placeholder='Informe o autor' onChange={e => setForm({ ...form, author: e.target.value })} value={form.author} />
+                        <input type="text" placeholder='Autor' onChange={e => setForm({ ...form, author: e.target.value })} value={form.author} style={{ textAlign: 'center' }} />
                     </div>
                     <div className={styles.popUpInput}>
                         <label>Algum link do livro (não obrigatório)</label>
-                        <input type="text" placeholder='Coloque um link da organização' onChange={e => setForm({ ...form, link: e.target.value })} value={form.link} />
+                        <input type="text" placeholder='Link da organização' onChange={e => setForm({ ...form, link: e.target.value })} value={form.link} style={{ textAlign: 'center' }} />
                     </div>
 
                     {!form.author || !form.title ? (
