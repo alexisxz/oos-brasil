@@ -25,8 +25,8 @@ export const data: GuiaDeLeitura[] = [
         finalLevel: 'advanced',
         livros: [
             { id: 'UbihWMgK4PkUW57Hw23u', text: 'Não é obrigatório, porém te da uma boa introdução para entender Marx, o livro só está disponível para venda.', position: 1 },
-            { id: 'Ncq8JyxLf8xQNRAFsebX', text: 'Para entender melhor as três fontes: filosofia, política e economia.', position: 2 },
-            { id: 'fxDLucw7doe6UCCSoFvA', text: 'Esse foi o primeiro programa da liga dos justos que por orientação de Engels e Marx virou a liga dos comunistas.', position: 3 },
+            { id: 'fxDLucw7doe6UCCSoFvA', text: 'Esse foi o primeiro programa da liga dos justos que por orientação de Engels e Marx virou a liga dos comunistas.', position: 2 },
+            { id: 'Ncq8JyxLf8xQNRAFsebX', text: 'Para entender melhor as três fontes: filosofia, política e economia.', position: 3 },
             { id: 'SZHHNEeEpCdh5E5oX0cT', text: 'O manifesto foi o programa final da liga dos comunistas, tomado como referência para todo comunista.', position: 4 },
             { id: 'vxC0AQ50HK0c4Vb1PGoN', text: 'Para entender e distinguir o socialismo utópico do socialismo científico sob a perspectiva do materialismo.', position: 5 },
             { id: 'LevIdv7nkrZlk0b09ASw', text: 'Para entender de como o salário não está associado ao preço da mercadoria, ou seja, a explicação do valor e mais-valia; uma crítica sobre crítica da economia política.', position: 6 },
