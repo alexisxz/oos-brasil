@@ -13,9 +13,11 @@ export default function BookCard({ book }: Props) {
 
     return (
         <div className={styles.bookCard}>
-            <img src={book.image} alt={book.title} />
+            <div className={styles.bookImgBox}>
+                <img src={book.image} alt={book.title} className={styles.bookImg} />
+            </div>
             <div className={styles.bookInfos}>
-                <h3>{book.title} <span style={{ fontWeight: 200, fontSize: 12 }}>({book.id})</span></h3>
+                <h3 className={styles.bookTitle}>{book.title} <span style={{ fontWeight: 200, fontSize: 12 }}>({book.id})</span></h3>
                 <p><strong>{book.author}</strong> {book.publishedYear}</p>
                 <p><strong>Nível de Leitura: </strong>{book.level === 'basic' ? 'Iniciante' : book.level === 'advanced' ? 'Avançado' : 'Intermediário'}</p>
                 <p>{book.shortDescription}</p>

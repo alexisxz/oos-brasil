@@ -10,6 +10,8 @@ import { database } from '../../firebase'
 import Pagination from '../../components/Pagination'
 import Link from 'next/link'
 import SuggestBookPopUp from '../../components/SuggestBookPopUp'
+import SelectSearch, { SelectedOptionValue } from 'react-select-search'
+import "react-select-search/style.css";
 
 export default function Livros() {
     const databaseRef = collection(database, 'books')
@@ -18,10 +20,14 @@ export default function Livros() {
     const [books, setBooks] = useState<Book[]>([])
     const [authores, setAuthores] = useState<string[]>([])
     const [filters, setFilter] = useState({
-        authores: 'all',
-        readingLevel: 'all' || 'basic' || 'intermediate' || 'advanced,',
+        authores: '',
+        readingLevel: '' || 'basic' || 'intermediate' || 'advanced,',
         title: '',
     })
+
+    // filters options
+    const authoreOptions = [{ name: "Todos", value: "" }, ...authores.map(str => ({ name: str, value: str }))];
+    const readingLevelOptions = [{ name: "Todos", value: "" }, { name: "Iniciante", value: "basic" }, { name: "Intermediário", value: "intermediate" }, { name: "Avançado", value: "advanced" }]
 
     // pagination
     const [currentPage, setCurrentPage] = useState<number>(1)
@@ -47,23 +53,25 @@ export default function Livros() {
 
     useEffect(() => {
         setCurrentPage(1)
-        if (filters.authores === 'all' && filters.readingLevel === 'all') {
+        if (filters.authores === '' && filters.readingLevel === '') {
             const newBooksArray = getBooks.filter(book => book.title.includes(filters.title))
             return setBooks(newBooksArray)
         }
 
-        if (filters.authores === 'all') {
+        if (filters.authores === '') {
             const newBooksArray = getBooks.filter(book => book.level === filters.readingLevel && book.title.includes(filters.title))
             return setBooks(newBooksArray)
         }
 
-        if (filters.readingLevel === 'all') {
+        if (filters.readingLevel === '') {
             const newBooksArray = getBooks.filter(book => book.author === filters.authores && book.title.includes(filters.title))
             return setBooks(newBooksArray)
         }
 
         const newBooksArray = getBooks.filter(book => book.author === filters.authores && book.level === filters.readingLevel && book.title.includes(filters.title))
         return setBooks(newBooksArray)
+
+
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filters])
@@ -90,10 +98,9 @@ export default function Livros() {
     }
 
     // handlers
-    const handleOnChange = (event: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>) => {
-        setFilter({ ...filters, [event.currentTarget.name]: event.currentTarget.value })
+    const handleOnChange = (filter: string, selected: SelectedOptionValue | SelectedOptionValue[] | React.FormEvent<HTMLInputElement>) => {
+        setFilter({ ...filters, [filter]: selected ? selected : "" });
     }
-
 
     return (
         <div>
@@ -113,27 +120,17 @@ export default function Livros() {
                         <p style={{ textAlign: 'center' }}>Caso não tenha o livro que deseja, nos <Link style={{ color: 'blue' }} href='/comunidade'>contate</Link></p>
                         <div className={styles.booksFilter}>
                             <label>Buscar por título</label>
-                            <input type="text" name='title' onChange={(e) => handleOnChange(e)} />
+                            <input type="text" name='title' onChange={(e) => setFilter({ ...filters, title: e.target.value })} />
                         </div>
 
                         <div className={styles.booksFilter}>
                             <label>Filtrar por autor(a/es/as)</label>
-                            <select name='authores' value={filters.authores} onChange={handleOnChange}>
-                                <option value="all">Todos</option>
-                                {authores.sort().map(author => (
-                                    <option value={author} key={author}>{author}</option>
-                                ))}
-                            </select>
+                            <SelectSearch options={authoreOptions} search={true} placeholder="Autores" onChange={e => handleOnChange("authores", e)} value={filters.authores} />
                         </div>
 
                         <div className={styles.booksFilter}>
                             <label>Filtrar por nível de leitura</label>
-                            <select name='readingLevel' value={filters.readingLevel} onChange={handleOnChange}>
-                                <option value="all">Todos</option>
-                                <option value="basic">Iniciante</option>
-                                <option value="intermediate">Intermediário</option>
-                                <option value="advanced">Avançado</option>
-                            </select>
+                            <SelectSearch options={readingLevelOptions} search={true} placeholder="Nível de Leitura" onChange={e => handleOnChange("readingLevel", e)} value={filters.readingLevel} />
                         </div>
                         <SuggestBookPopUp />
 

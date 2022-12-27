@@ -27,6 +27,12 @@ export default function Home() {
     organizationName: '',
   })
 
+  // filters options
+  const stateOptions = [{ name: "Todos", value: "" }, ...states.map(s => ({ name: s, value: s }))];
+  const citiesOptions = [{ name: "Todos", value: "" }, ...cities.map(s => ({ name: s, value: s }))];
+  const organizationOptions = [{ name: "Todos", value: "" }, ...organizationsName.map(s => ({ name: s, value: s }))];
+  const typeOptions = [{ name: "Todos", value: "" }, ...types.map(s => ({ name: s, value: s }))];
+
   // pagination
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [organizationsPerPage, setOrganizationsPerPage] = useState<number>(10)
@@ -172,10 +178,7 @@ export default function Home() {
     setFilter({ ...filters, [filter]: selected ? selected : "" });
   }
 
-  const stateOptions = [{ name: "Todos", value: "" } , ...states.map(s => ({name: s, value: s}))];
-  const citiesOptions = [{ name: "Todos", value: "" } , ...cities.map(s => ({name: s, value: s}))];
-  const organizationOptions = [{ name: "Todos", value: "" } , ...organizationsName.map(s => ({name: s, value: s}))];
-  const typeOptions = [{ name: "Todos", value: "" } , ...types.map(s => ({name: s, value: s}))];
+
 
   return (
     <div>
