@@ -26,7 +26,7 @@ export default function BookCard({ book }: Props) {
                     {book.audiobookLink ? <a style={{ background: 'blue' }} className={styles.bookBtn} target='_blank' rel='noreferrer' href={book.audiobookLink}>Audiobook</a> : ''}
                     {book.freeBookLink ? <a style={{ background: 'green' }} className={styles.bookBtn} target='_blank' rel='noreferrer' href={book.freeBookLink}>Leitura Grátis</a> : ''}
                     {book.onlineBookLink ? <a style={{ background: '#8B8000' }} className={styles.bookBtn} target='_blank' rel='noreferrer' href={book.onlineBookLink}>Comprar Livro Online</a> : ''}
-                    {book.bookLink ? <a style={{ background: '#8b0000' }} className={styles.bookBtn} target='_blank' rel='noreferrer' href={book.bookLink}>Comprar Livro Fisico</a> : ''}
+                    {book.bookLink ? <a style={{ background: '#8b0000' }} className={styles.bookBtn} target='_blank' rel='noreferrer' href={book.bookLink}>EBook</a> : ''}
                 </div>
             </div>
         </div>

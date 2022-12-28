@@ -44,7 +44,7 @@ function GuideBookCard({ book }: Props) {
                 {selectBook?.audiobookLink ? <a style={{ background: 'blue' }} className={styles.bookBtn} target='_blank' rel='noreferrer' href={selectBook?.audiobookLink}>Audiobook</a> : ''}
                 {selectBook?.freeBookLink ? <a style={{ background: 'green' }} className={styles.bookBtn} target='_blank' rel='noreferrer' href={selectBook?.freeBookLink}>Leitura Grátis</a> : ''}
                 {selectBook?.onlineBookLink ? <a style={{ background: '#8B8000' }} className={styles.bookBtn} target='_blank' rel='noreferrer' href={selectBook?.onlineBookLink}>Comprar Livro Online</a> : ''}
-                {selectBook?.bookLink ? <a style={{ background: '#8b0000' }} className={styles.bookBtn} target='_blank' rel='noreferrer' href={selectBook?.bookLink}>Comprar Livro Fisico</a> : ''}
+                {selectBook?.bookLink ? <a style={{ background: '#8b0000' }} className={styles.bookBtn} target='_blank' rel='noreferrer' href={selectBook?.bookLink}>EBook</a> : ''}
             </div>
         </div>
     )

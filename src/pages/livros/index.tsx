@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import SideBar from '../../components/SideBar'
 import BookCard from '../../components/BookCard'
-import { fakeDataLivros } from '../../data/fakeData'
 import styles from '../../styles/Home.module.css'
 import { useEffect, useState } from 'react'
 import { Book } from '../../types/Book'
@@ -21,13 +20,15 @@ export default function Livros() {
     const [authores, setAuthores] = useState<string[]>([])
     const [filters, setFilter] = useState({
         authores: '',
-        readingLevel: '' || 'basic' || 'intermediate' || 'advanced,',
+        readingLevel: '',
         title: '',
+        readingType: '',
     })
 
     // filters options
     const authoreOptions = [{ name: "Todos", value: "" }, ...authores.map(str => ({ name: str, value: str }))];
     const readingLevelOptions = [{ name: "Todos", value: "" }, { name: "Iniciante", value: "basic" }, { name: "Intermediário", value: "intermediate" }, { name: "Avançado", value: "advanced" }]
+    const readingTypesOptions = [{ name: "Todos", value: "" }, { name: "Audiobook", value: "audiobook" }, { name: "Leitura Gratuíta", value: "freeBook" }, { name: "EBook", value: "eBook" }, { name: "Comprar livro", value: "bookLink" }]
 
     // pagination
     const [currentPage, setCurrentPage] = useState<number>(1)
@@ -53,14 +54,22 @@ export default function Livros() {
 
     useEffect(() => {
         setCurrentPage(1)
-        if (filters.authores === '' && filters.readingLevel === '') {
+        if (filters.authores === '' && filters.readingLevel === '' && filters.readingType === '') {
             const newBooksArray = getBooks.filter(book => book.title.includes(filters.title))
             return setBooks(newBooksArray)
         }
 
         if (filters.authores === '') {
-            const newBooksArray = getBooks.filter(book => book.level === filters.readingLevel && book.title.includes(filters.title))
-            return setBooks(newBooksArray)
+            if (filters.readingType === '') {
+                const newBooksArray = getBooks.filter(book => book.level === filters.readingLevel && book.title.includes(filters.title))
+                return setBooks(newBooksArray)
+            } else if (filters.readingLevel === '') {
+                const newBooksArray = filterReadingTypes().filter(book => book.title.includes(filters.title))
+                return setBooks(newBooksArray)
+            } else {
+                const newBooksArray = filterReadingTypes()?.filter(book => book.level === filters.readingLevel && book.title.includes(filters.title))
+                return setBooks(newBooksArray)
+            }
         }
 
         if (filters.readingLevel === '') {
@@ -75,6 +84,22 @@ export default function Livros() {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filters])
+
+    // filters functions
+    const filterReadingTypes = () => {
+
+        if (filters.readingType === "audiobook") {
+            return getBooks.filter(book => book.audiobookLink !== '')
+        } else if (filters.readingType === "freeBook") {
+            return getBooks.filter(book => book.freeBookLink !== '')
+        } else if (filters.readingType === "eBook") {
+            return getBooks.filter(book => book.bookLink !== '')
+        } else if (filters.readingType === "bookLink") {
+            return getBooks.filter(book => book.onlineBookLink !== '')
+        }
+        return getBooks
+
+    }
 
     //read and getters
     const readDataFirebase = async () => {
@@ -132,6 +157,12 @@ export default function Livros() {
                             <label>Filtrar por nível de leitura</label>
                             <SelectSearch options={readingLevelOptions} search={true} placeholder="Nível de Leitura" onChange={e => handleOnChange("readingLevel", e)} value={filters.readingLevel} />
                         </div>
+
+                        <div className={styles.booksFilter}>
+                            <label>Filtrar por tipo de leitura</label>
+                            <SelectSearch options={readingTypesOptions} search={true} placeholder="Tipo de Leitura" onChange={e => handleOnChange("readingType", e)} value={filters.readingType} />
+                        </div>
+
                         <SuggestBookPopUp />
 
                         {filters.authores === 'all' && filters.readingLevel === 'all' ? '' : books.length <= 0 ? <div>Infelizmente não temos nenhum livro que caiba no seu critério :(</div> : ''}
