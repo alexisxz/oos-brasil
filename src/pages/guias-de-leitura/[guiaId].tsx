@@ -2,7 +2,7 @@ import Head from 'next/head'
 import SideBar from '../../components/SideBar'
 import styles from '../../styles/Home.module.css'
 import React, { useEffect, useState } from 'react'
-import { data, GuiaDeLeitura } from '../../data/guiasDeLeitura'
+import { GuiaDeLeitura, data } from '../../data/guiasDeLeitura'
 import { useRouter } from 'next/router'
 import GuideBookCard from '../../components/GuideBookCard'
 
@@ -13,11 +13,7 @@ export default function GuiaPage() {
     const guide = data.find(guide => guide.slug === route.query.guiaId)
 
     useEffect(() => {
-        if (!guide?.id) {
-            route.replace('/guias-de-leitura')
-        }
         setIsLoading(false)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
