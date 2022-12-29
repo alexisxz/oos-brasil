@@ -18,9 +18,10 @@ export default function BookCard({ book }: Props) {
             </div>
             <div className={styles.bookInfos}>
                 <h3 className={styles.bookTitle}>{book.title} <span style={{ fontWeight: 200, fontSize: 12 }}>({book.id})</span></h3>
+                <span>Livro em <strong>{book.language}</strong></span>
                 <p><strong>{book.author}</strong> {book.publishedYear}</p>
                 <p><strong>Nível de Leitura: </strong>{book.level === 'basic' ? 'Iniciante' : book.level === 'advanced' ? 'Avançado' : 'Intermediário'}</p>
-                <p>{book.shortDescription}</p>
+                <p style={{ textAlign: 'left' }}>{book.shortDescription}</p>
 
                 <div className={styles.bookBtnWrapper}>
                     {book.audiobookLink ? <a style={{ background: 'blue' }} className={styles.bookBtn} target='_blank' rel='noreferrer' href={book.audiobookLink}>Audiobook</a> : ''}

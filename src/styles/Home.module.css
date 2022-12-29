@@ -153,7 +153,7 @@
   gap: 1rem;
   border-radius: 10px;
   height: 350px;
-  max-width: 900px;
+
 }
 
 .bookImgBox {
@@ -173,7 +173,13 @@
   margin-top: 0;
 }
 
+.bookInfos {
+  display: flex;
+  flex-direction: column;
+}
+
 .bookBtnWrapper {
+  margin-top: auto;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -181,6 +187,7 @@
 }
 
 .bookBtn {
+
   text-align: center;
   padding: 0.5rem;
   border-radius: 5px;

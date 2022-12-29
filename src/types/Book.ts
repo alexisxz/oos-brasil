@@ -3,6 +3,7 @@ export type Book = {
     title: string,
     author: 'V.I. Lenin' | 'Karl Marx',
     publishedYear: string,
+    language: string,
     image: string,
     level: "basic" | "intermediate" | "advanced",
     shortDescription: string,
