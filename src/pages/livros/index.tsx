@@ -67,17 +67,25 @@ export default function Livros() {
                 const newBooksArray = filterReadingTypes().filter(book => book.title.includes(filters.title))
                 return setBooks(newBooksArray)
             } else {
-                const newBooksArray = filterReadingTypes()?.filter(book => book.level === filters.readingLevel && book.title.includes(filters.title))
+                const newBooksArray = filterReadingTypes().filter(book => book.level === filters.readingLevel && book.title.includes(filters.title))
                 return setBooks(newBooksArray)
             }
         }
 
         if (filters.readingLevel === '') {
-            const newBooksArray = getBooks.filter(book => book.author === filters.authores && book.title.includes(filters.title))
-            return setBooks(newBooksArray)
+            if (filters.readingType === '') {
+                const newBooksArray = getBooks.filter(book => book.author === filters.authores && book.title.includes(filters.title))
+                return setBooks(newBooksArray)
+            } else if (filters.authores === '') {
+                const newBooksArray = filterReadingTypes().filter(book => book.title.includes(filters.title))
+                return setBooks(newBooksArray)
+            } else {
+                const newBooksArray = filterReadingTypes().filter(book => book.author === filters.authores && book.title.includes(filters.title))
+                return setBooks(newBooksArray)
+            }
         }
 
-        const newBooksArray = getBooks.filter(book => book.author === filters.authores && book.level === filters.readingLevel && book.title.includes(filters.title))
+        const newBooksArray = filterReadingTypes().filter(book => book.author === filters.authores && book.level === filters.readingLevel && book.title.includes(filters.title))
         return setBooks(newBooksArray)
 
 
@@ -165,14 +173,13 @@ export default function Livros() {
 
                         <SuggestBookPopUp />
 
-                        {filters.authores === 'all' && filters.readingLevel === 'all' ? '' : books.length <= 0 ? <div>Infelizmente não temos nenhum livro que caiba no seu critério :(</div> : ''}
-
                     </div>
                     <div className={styles.mainDiv}>
                         {currentBooks.map(book => (
                             <BookCard key={book.id} book={book} />
                         ))}
-                        <Pagination totalItems={books.length} itemsPerPage={booksPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+
+                        {books.length <= 0 ? <p style={{ textAlign: 'center' }}>Infelizmente não temos nenhum livro que caiba no seu critério :(</p> : <Pagination totalItems={books.length} itemsPerPage={booksPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />}
                     </div>
 
 
