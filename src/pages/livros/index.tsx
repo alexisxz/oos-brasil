@@ -18,15 +18,18 @@ export default function Livros() {
     const [getBooks, setGetBooks] = useState<any[] | Book[]>([])
     const [books, setBooks] = useState<Book[]>([])
     const [authores, setAuthores] = useState<string[]>([])
+    const [languages, setLanguages] = useState<string[]>([])
     const [filters, setFilter] = useState({
         authores: '',
+        language: '',
         readingLevel: '',
         title: '',
         readingType: '',
     })
 
     // filters options
-    const authoreOptions = [{ name: "Todos", value: "" }, ...authores.map(str => ({ name: str, value: str }))];
+    const authoresOptions = [{ name: "Todos", value: "" }, ...authores.map(str => ({ name: str, value: str }))];
+    const languagesOptions = [{ name: "Todos", value: "" }, ...languages.map(str => ({ name: str, value: str }))]
     const readingLevelOptions = [{ name: "Todos", value: "" }, { name: "Iniciante", value: "basic" }, { name: "Intermediário", value: "intermediate" }, { name: "Avançado", value: "advanced" }]
     const readingTypesOptions = [{ name: "Todos", value: "" }, { name: "Audiobook", value: "audiobook" }, { name: "Leitura Gratuíta", value: "freeBook" }, { name: "EBook", value: "eBook" }, { name: "Comprar livro", value: "bookLink" }]
 
@@ -49,65 +52,58 @@ export default function Livros() {
 
     useEffect(() => {
         getAuthores()
+        getLanguages()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [books])
 
     useEffect(() => {
         setCurrentPage(1)
-        if (filters.authores === '' && filters.readingLevel === '' && filters.readingType === '') {
+
+        if (filters.authores === '' && filters.readingLevel === '' && filters.readingType === '' && filters.language === '') {
             const newBooksArray = getBooks.filter(book => book.title.includes(filters.title))
             return setBooks(newBooksArray)
         }
 
-        if (filters.authores === '') {
-            if (filters.readingType === '') {
-                const newBooksArray = getBooks.filter(book => book.level === filters.readingLevel && book.title.includes(filters.title))
-                return setBooks(newBooksArray)
-            } else if (filters.readingLevel === '') {
-                const newBooksArray = filterReadingTypes().filter(book => book.title.includes(filters.title))
-                return setBooks(newBooksArray)
-            } else {
-                const newBooksArray = filterReadingTypes().filter(book => book.level === filters.readingLevel && book.title.includes(filters.title))
-                return setBooks(newBooksArray)
-            }
+        let newBooksArray: Book[] = getBooks
+
+        if (filters.language !== '') {
+            newBooksArray = newBooksArray.filter(book => book.language === filters.language)
         }
 
-        if (filters.readingLevel === '') {
-            if (filters.readingType === '') {
-                const newBooksArray = getBooks.filter(book => book.author === filters.authores && book.title.includes(filters.title))
-                return setBooks(newBooksArray)
-            } else if (filters.authores === '') {
-                const newBooksArray = filterReadingTypes().filter(book => book.title.includes(filters.title))
-                return setBooks(newBooksArray)
-            } else {
-                const newBooksArray = filterReadingTypes().filter(book => book.author === filters.authores && book.title.includes(filters.title))
-                return setBooks(newBooksArray)
-            }
+        if (filters.authores !== '') {
+            newBooksArray = newBooksArray.filter(book => book.author === filters.authores)
         }
 
-        const newBooksArray = filterReadingTypes().filter(book => book.author === filters.authores && book.level === filters.readingLevel && book.title.includes(filters.title))
-        return setBooks(newBooksArray)
+        if (filters.readingLevel !== '') {
+            newBooksArray = newBooksArray.filter(book => book.level === filters.readingLevel)
+        }
 
+        if (filters.readingType !== '') {
+            newBooksArray = filterReadingTypes(newBooksArray)
+        }
 
+        newBooksArray = newBooksArray.filter(book => book.title.includes(filters.title))
+        setBooks(newBooksArray)
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filters])
 
     // filters functions
-    const filterReadingTypes = () => {
+    const filterReadingTypes = (newBooksArray: Book[]) => {
 
         if (filters.readingType === "audiobook") {
-            return getBooks.filter(book => book.audiobookLink !== '')
+            return newBooksArray.filter(book => book.audiobookLink !== '')
         } else if (filters.readingType === "freeBook") {
-            return getBooks.filter(book => book.freeBookLink !== '')
+            return newBooksArray.filter(book => book.freeBookLink !== '')
         } else if (filters.readingType === "eBook") {
-            return getBooks.filter(book => book.bookLink !== '')
+            return newBooksArray.filter(book => book.bookLink !== '')
         } else if (filters.readingType === "bookLink") {
-            return getBooks.filter(book => book.onlineBookLink !== '')
+            return newBooksArray.filter(book => book.onlineBookLink !== '')
         }
-        return getBooks
+        return newBooksArray
 
     }
+
 
     //read and getters
     const readDataFirebase = async () => {
@@ -127,7 +123,20 @@ export default function Livros() {
             return allAuthores = [...allAuthores, book.author]
         })
 
+        allAuthores.sort()
         setAuthores(allAuthores);
+    }
+
+    const getLanguages = () => {
+        let allLanguages: string[] = []
+
+        getBooks.map(book => {
+            if (allLanguages.find(language => language === book.language)) return;
+            return allLanguages = [...allLanguages, book.language]
+        })
+
+        allLanguages.sort()
+        setLanguages(allLanguages)
     }
 
     // handlers
@@ -157,8 +166,13 @@ export default function Livros() {
                         </div>
 
                         <div className={styles.booksFilter}>
+                            <label>Idioma do Livro</label>
+                            <SelectSearch options={languagesOptions} search={true} placeholder="Idiomas" onChange={e => handleOnChange("language", e)} value={filters.language} />
+                        </div>
+
+                        <div className={styles.booksFilter}>
                             <label>Filtrar por autor(a/es/as)</label>
-                            <SelectSearch options={authoreOptions} search={true} placeholder="Autores" onChange={e => handleOnChange("authores", e)} value={filters.authores} />
+                            <SelectSearch options={authoresOptions} search={true} placeholder="Autores" onChange={e => handleOnChange("authores", e)} value={filters.authores} />
                         </div>
 
                         <div className={styles.booksFilter}>
