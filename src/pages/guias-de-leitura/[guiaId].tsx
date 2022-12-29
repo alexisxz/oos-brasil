@@ -14,7 +14,7 @@ export default function GuiaPage() {
     return (
         <div>
             <Head>
-                <title>OOS Brazil - {guide?.title ? guide?.title : 'Guia de leituras'}</title>
+                <title>OOS Brazil - Formação Socialista</title>
                 <meta name="description" content={`Guia de leitura para formação socialista`} />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
