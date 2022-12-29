@@ -193,7 +193,7 @@ export default function Livros() {
                             <BookCard key={book.id} book={book} />
                         ))}
 
-                        {books.length <= 0 ? <p style={{ textAlign: 'center' }}>Infelizmente não temos nenhum livro que caiba no seu critério :(</p> : <Pagination totalItems={books.length} itemsPerPage={booksPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />}
+                        {getBooks.length <= 0 ? <p style={{ textAlign: 'center' }}>Carregando livros...</p> : books.length <= 0 ? <p style={{ textAlign: 'center' }}>Infelizmente não temos nenhum livro que caiba no seu critério :(</p> : <Pagination totalItems={books.length} itemsPerPage={booksPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />}
                     </div>
 
 

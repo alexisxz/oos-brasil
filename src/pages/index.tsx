@@ -225,7 +225,7 @@ export default function Home() {
               <OrganizationCard key={organization.id} organization={organization} />
             ))}
 
-            {organizations.length <= 0 ? <p style={{ textAlign: 'center' }}>Infelizmente não temos nenhuma organização que caiba no seu critério, procure na maior cidade mais próxima de você :(</p> : <Pagination totalItems={organizations.length} itemsPerPage={organizationsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />}
+            {getOrganizations.length <= 0 ? <p style={{ textAlign: 'center' }}>Carregando organizações...</p> : organizations.length <= 0 ? <p style={{ textAlign: 'center' }}>Infelizmente não temos nenhuma organização que caiba no seu critério, procure na maior cidade mais próxima de você :(</p> : <Pagination totalItems={organizations.length} itemsPerPage={organizationsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />}
           </div>
         </main>
 
