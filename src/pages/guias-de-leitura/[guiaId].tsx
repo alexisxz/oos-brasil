@@ -8,8 +8,17 @@ import GuideBookCard from '../../components/GuideBookCard'
 
 
 export default function GuiaPage() {
+    const [isLoading, setIsLoading] = useState<boolean>(true)
     const route = useRouter()
     const guide = data.find(guide => guide.slug === route.query.guiaId)
+
+    useEffect(() => {
+        if (!guide?.id) {
+            route.replace('/guias-de-leitura')
+        }
+        setIsLoading(false)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div>
@@ -19,26 +28,32 @@ export default function GuiaPage() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <section className={styles.section}>
-                <header className={styles.header}>
-                    <SideBar />
-                </header>
+            {isLoading ? (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+                    <p>Carregando seu guia...</p>
+                </div>
+            ) : (
+                <section className={styles.section}>
+                    <header className={styles.header}>
+                        <SideBar />
+                    </header>
 
-                <main className={styles.main}>
-                    <div className={`${styles.mainDiv}`} style={{ textAlign: 'center' }}>
-                        <h3>{guide?.title}</h3>
-                        <p>{guide?.intro}</p>
-                        <h5>Autor(a/es/as): {guide?.createdBy.map(creator => (<p key={creator}>{creator}</p>))}</h5>
-                    </div>
+                    <main className={styles.main}>
+                        <div className={`${styles.mainDiv}`} style={{ textAlign: 'center' }}>
+                            <h3>{guide?.title}</h3>
+                            <p>{guide?.intro}</p>
+                            <h5>Autor(a/es/as): {guide?.createdBy.map(creator => (<p key={creator}>{creator}</p>))}</h5>
+                        </div>
 
-                    <div className={`${styles.mainDiv}`}>
-                        {guide?.livros.map(book => (
-                            <GuideBookCard key={book.id} book={book} />
-                        ))}
-                    </div>
-                </main>
+                        <div className={`${styles.mainDiv}`}>
+                            {guide?.livros.map(book => (
+                                <GuideBookCard key={book.id} book={book} />
+                            ))}
+                        </div>
+                    </main>
 
-            </section>
+                </section>
+            )}
         </div>
     )
 }
