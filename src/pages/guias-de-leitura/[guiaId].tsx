@@ -19,13 +19,14 @@ export default function GuiaPage() {
 
         if (!router.isReady) return
 
+        if (!data.find(guide => guide.slug === guiaId)) router.replace('/404page')
+
         data.map(function (item) {
             if (item.slug === guiaId) {
                 setSlug(item.slug)
                 setGuide(item)
                 setIsLoading(false)
             }
-            console.log(guide)
         })
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
