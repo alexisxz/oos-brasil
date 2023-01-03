@@ -227,7 +227,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 300px;
   width: 100%;
 }
 
@@ -305,7 +304,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 300px;
   width: 100%;
 }
 
@@ -347,7 +345,7 @@
   background-color: #323233;
   border-radius: 10px;
   max-height: 400px;
-  max-width: 300px;
+  width: auto;
   text-align: center;
   margin-bottom: 1rem;
   display: flex;
@@ -362,7 +360,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 300px;
   width: 100%;
 }
 
@@ -468,7 +465,6 @@
     gap: 1rem;
     align-items: center;
     justify-content: space-between;
-    min-height: 100%;
     font-size: 12px;
   }
 

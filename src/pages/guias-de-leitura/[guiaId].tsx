@@ -9,12 +9,28 @@ import GuideBookCard from '../../components/GuideBookCard'
 
 export default function GuiaPage() {
     const [isLoading, setIsLoading] = useState<boolean>(true)
-    const route = useRouter()
-    const guide = data.find(guide => guide.slug === route.query.guiaId)
+    const router = useRouter()
+    const { guiaId } = router.query
+    const [slug, setSlug] = useState<string>("")
+    const dataGuide = data.find(guide => guide.slug === guiaId)
+    const [guide, setGuide] = useState<GuiaDeLeitura>()
 
     useEffect(() => {
-        setIsLoading(false)
-    }, [])
+
+        if (!router.isReady) return
+
+        data.map(function (item) {
+            if (item.slug === guiaId) {
+                setSlug(item.slug)
+                setGuide(item)
+                setIsLoading(false)
+            }
+            console.log(guide)
+        })
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [router.query.guiaId, router.isReady])
+
 
     return (
         <div>
