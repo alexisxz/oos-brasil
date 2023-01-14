@@ -37,7 +37,7 @@ export default function SuggestOrganizationPopUp({ }: Props) {
                     <button onClick={() => { setIsDisplay(false); setForm({ name: '', city: '', state: '', link: '' }) }} className={styles.popUpCloseButton}><AiFillCloseCircle /></button>
                     <h3>Sugerir uma organização</h3>
                     <div className={styles.popUpInput}>
-                        <label>Nome</label>
+                        <label>Nome da Organização</label>
                         <input type="text" placeholder='Organização' onChange={e => setForm({ ...form, name: e.target.value })} value={form.name} style={{ textAlign: 'center' }} />
                     </div>
                     <div className={styles.popUpInput}>
