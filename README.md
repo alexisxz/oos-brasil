@@ -1,4 +1,3 @@
-![TESTS](https://github.com/alexisxz/hotel-management-system/actions/workflows/node.js.yml/badge.svg)
 # OOS Brazil - https://oos-brasil.vercel.app/
 It is a website created to support some organizations and related education in Brazil
 
