@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![TESTS](https://github.com/alexisxz/hotel-management-system/actions/workflows/node.js.yml/badge.svg)
+# OOS Brazil - https://oos-brasil.vercel.app/
+It is a website created to support some organizations and related education in Brazil
 
 ## Getting Started
 
@@ -10,25 +12,27 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Techs
+ - React / NextJs
+ - Typescript
+ - ESlint
+ - SCSS for styles
+ - Firestore
+ - Firebase Storage
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Pages
+#### Comunidades (Home)
+ - All communities with dynamic filters (by state, city, organization and organization type)
+ - Suggest community popup
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+#### Livros
+ - All books with dynamic filters (by free input title, by language, author, reading type and reading level)
+ - Suggest book popup
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+#### Comunidade
+ - All OOS communities and contact
 
-## Learn More
+### Guias de Leitura
+ - All reading guides with dynamic filters (by level reading)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+https://alexisxz.github.io/my-site/
