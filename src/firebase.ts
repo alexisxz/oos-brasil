@@ -1,23 +1,29 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from 'firebase/firestore'
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyAP4AyVU3YsUoc4Efgq9XFdTzO1BtZdQkI",
-    authDomain: "oos-brasil.firebaseapp.com",
-    projectId: "oos-brasil",
-    storageBucket: "oos-brasil.appspot.com",
-    messagingSenderId: "954148314519",
-    appId: "1:954148314519:web:7f93c686da2164441538d2",
-    measurementId: "G-EMQV39EJ1J"
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-// export const analytics = getAnalytics(app);
 export const database = getFirestore(app);
+export const analytics = () => {
+  if (typeof window !== "undefined") {
+    return getAnalytics();
+  } else {
+    return null;
+  }
+};
