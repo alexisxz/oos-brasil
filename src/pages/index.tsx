@@ -24,7 +24,7 @@ export default function Home() {
     city: '',
     state: '',
     type: '',
-    organizationName: '',
+    organization: '',
   })
 
   // filters options
@@ -63,25 +63,20 @@ export default function Home() {
     if (!getOrganizations) return
     let newOrganizationsArray: Organization[] = getOrganizations
 
-    if (filters.city === '' && filters.state === '' && filters.type === '' && filters.organizationName === '') {
+    /// Caso todos os valores do filtro estejam vazios, já faz a busca imediatamente
+    if (Object.values(filters).filter(filterValue => !!filterValue).length === 0)
       return setOrganizations(getOrganizations)
-    }
 
-    if (filters.state !== '') {
-      newOrganizationsArray = newOrganizationsArray.filter(organization => organization.state === filters.state)
-    }
+    Object.keys(filters).forEach(filterKey => {
+      // Colocamos o valor que irá ser filtrado dentro desta variável
+      const valueToBeFiltered = (filters as any)[filterKey];
 
-    if (filters.city !== '') {
-      newOrganizationsArray = newOrganizationsArray.filter(organization => organization.city === filters.city)
-    }
-
-    if (filters.type !== '') {
-      newOrganizationsArray = newOrganizationsArray.filter(organization => organization.type === filters.type)
-    }
-
-    if (filters.organizationName !== '') {
-      newOrganizationsArray = newOrganizationsArray.filter(organization => organization.organization === filters.organizationName)
-    }
+      // Caso o filtro que está sendo iterado esteja vazio, não precisamos fazer nada
+      if (!valueToBeFiltered) return;
+      
+      // Realiza efetivamente o filtro do componente
+      newOrganizationsArray = newOrganizationsArray.filter(organization => (organization as any)[filterKey] === valueToBeFiltered);
+    })
 
     setOrganizations(newOrganizationsArray)
 
@@ -101,7 +96,7 @@ export default function Home() {
   const getStates = () => {
     let allStates: string[] = []
 
-    if (filters.city === '' && filters.type === '' && filters.organizationName === '') {
+    if (filters.city === '' && filters.type === '' && filters.organization === '') {
       getOrganizations.map(organization => {
         if (allStates.find(state => state === organization.state)) return;
         return allStates = [...allStates, organization.state]
@@ -119,7 +114,7 @@ export default function Home() {
   const getCities = () => {
     let allCities: string[] = []
 
-    if (filters.state === '' && filters.type === '' && filters.organizationName === '') {
+    if (filters.state === '' && filters.type === '' && filters.organization === '') {
       getOrganizations.map(organization => {
         if (allCities.find(city => city === organization.city)) return;
         return allCities = [...allCities, organization.city]
@@ -138,7 +133,7 @@ export default function Home() {
   const getTypes = () => {
     let allTypes: string[] = []
 
-    if (filters.state === '' && filters.city === '' && filters.organizationName === '') {
+    if (filters.state === '' && filters.city === '' && filters.organization === '') {
       getOrganizations.map(organization => {
         if (allTypes.find(type => type === organization.type)) return;
         return allTypes = [...allTypes, organization.type]
@@ -210,7 +205,7 @@ export default function Home() {
 
             <div className={styles.organizationsFilters}>
               <label>Filtrar por organização</label>
-              <SelectSearch options={organizationOptions} search={true} placeholder="Organização" onChange={s => handleOnChange("organizationName", s)} value={filters.organizationName} />
+              <SelectSearch options={organizationOptions} search={true} placeholder="Organização" onChange={s => handleOnChange("organization", s)} value={filters.organization} />
             </div>
 
             <div className={styles.organizationsFilters}>
