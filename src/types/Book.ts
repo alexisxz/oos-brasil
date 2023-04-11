@@ -1,14 +1,14 @@
 export type Book = {
-    id?: string,
-    title: string,
-    author: 'V.I. Lenin' | 'Karl Marx',
-    publishedYear: string,
-    language: string,
-    image: string,
-    level: "basic" | "intermediate" | "advanced",
-    shortDescription: string,
-    audiobookLink?: string,
-    freeBookLink?: string,
-    onlineBookLink?: string,
-    bookLink?: string
-}
+  id?: string;
+  title: string;
+  author: string;
+  publishedYear: string;
+  language: string;
+  image: string;
+  level: "basic" | "intermediate" | "advanced";
+  shortDescription: string;
+  audiobookLink?: string;
+  freeBookLink?: string;
+  onlineBookLink?: string;
+  bookLink?: string;
+};
